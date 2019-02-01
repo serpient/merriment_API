@@ -3,23 +3,27 @@ import cors from 'cors'
 import { ApolloServer, gql } from 'apollo-server-express';
 import 'dotenv/config';
 
-import schema from './schema/index';
-import resolvers from './resolvers/index';
-import models from './models/index';
+import schema from './schema';
+import resolvers from './resolvers';
+import models, { sequelize } from './models';
 
-const app = express(cors());
+const app = express();
+
+app.user(cors());
 
 const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
   context: {
     models,
-    me: models.users[1],
+    me: models.user[1],
   }
 })
 
 server.applyMiddleware({ app, path: '/graphql' });
 
-app.listen({ port: 8000 }, () => {
-  console.log('Apollo Server on http://localhost:8000/graphql');
+sequelize.sync().then(async () => {
+  app.listen(process.env.PORT, () => {
+    console.log('Apollo Server on http://localhost:8000/graphql')
+  })
 })
