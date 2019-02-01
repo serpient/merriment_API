@@ -1,7 +1,7 @@
 const message = (sequelize, DataTypes) => {
   const Message = sequelize.define('message', {
     text: {
-      type: DataTypes.string,
+      type: DataTypes.STRING,
     },
   });
 
