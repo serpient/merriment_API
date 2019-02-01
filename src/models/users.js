@@ -1,3 +1,5 @@
+var bcrypt = require('bcryptjs');
+
 const user = (sequelize, DataTypes) => {
   const User = sequelize.define('user', {
     username: {
@@ -54,6 +56,34 @@ const user = (sequelize, DataTypes) => {
 
     return user;
   };
+
+  User.beforeCreate(user => {
+    user.password = await user.generatePasswordHash();
+  });
+
+  User.prototype.generatePasswordHash = async function() {
+    /*
+    In this implementation, the generatePasswordHash() function is 
+    added to the user’s prototype chain. That’s why it is possible 
+    to execute the function as method on each user instance, so you 
+    have the user itself available within the method as this. You 
+    can also take the user instance with its password as an argument, 
+    which I prefer, though using JavaScript’s prototypal inheritance 
+    a good tool for any web developer. For now, the password is hashed 
+    with bcrypt before it gets stored every time a user is created in 
+    the database.
+    */
+    const saltRounds = 10;
+    return await bcrypt.hash(this.password, saltRounds);
+    /*
+    The bcrypt hash() method takes a string–the user’s password–and 
+    an integer called salt rounds. Each salt round makes it more 
+    costly to hash the password, which makes it more costly for 
+    attackers to decrypt the hash value. A common value for salt 
+    rounds nowadays ranged from 10 to 12, as increasing the number of 
+    salt rounds might cause performance issues both ways.
+    */
+  }
 
   return User;
 };
