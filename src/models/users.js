@@ -8,6 +8,26 @@ const user = (sequelize, DataTypes) => {
         notEmpty: true,
       },
     },
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'Email cannot be empty',
+        },
+        isEmail: true,
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: [7,42],
+      }
+    }
   });
 
   User.associate = models => {
