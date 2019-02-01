@@ -17,6 +17,7 @@ const server = new ApolloServer({
   context: {
     models,
     me: models.User.findByLogin('rwieruch'),
+    secret: process.env.SECRET,
   }
 })
 
