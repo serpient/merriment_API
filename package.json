@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/serpient/merriment_API/issues"
   },
-  "homepage": "https://github.com/serpient/merriment_API#readme"
+  "homepage": "https://github.com/serpient/merriment_API#readme",
+  "dependencies": {
+    "apollo-server": "^2.3.3",
+    "apollo-server-express": "^2.3.3",
+    "express": "^4.16.4",
+    "graphql": "^14.1.1"
+  }
 }
