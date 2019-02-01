@@ -2,15 +2,6 @@ import uuidv4 from 'uuid/v4';
 
 export default {
   Query: {
-    me: (parent, args, { me }) => {
-      return me;
-    },
-    user: (parent, { id }) => {
-      return users[id]
-    },
-    users: () => {
-      return Object.values(users);
-    },
     messages: () => {
       return Object.values(messages);
     },
@@ -42,15 +33,6 @@ export default {
 
       messages = otherMessages;
       return true;
-    }
-  },
-
-  User: {
-    username: (parent) => parent.username,
-    messages: user => {
-      return Object.values(messages).filter(
-        message => message.userId === user.id,
-      )
     }
   },
 
