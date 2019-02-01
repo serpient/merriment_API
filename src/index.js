@@ -3,9 +3,9 @@ import cors from 'cors'
 import { ApolloServer, gql } from 'apollo-server-express';
 import 'dotenv/config';
 
-import schema from './schema';
-import resolvers from './resolvers';
-import models from './models';
+import schema from './schema/index';
+import resolvers from './resolvers/index';
+import models from './models/index';
 
 const app = express(cors());
 

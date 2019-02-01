@@ -3,17 +3,17 @@ export default {
     me: (parent, args, { me }) => {
       return me;
     },
-    user: (parent, { id }) => {
-      return users[id]
+    user: (parent, { id }, { models }) => {
+      return models.users[id]
     },
-    users: () => {
-      return Object.values(users);
+    users: (parent, args, { models }) => {
+      return Object.values(models.users);
     },
   },
 
   User: {
-    messages: user => {
-      return Object.values(messages).filter(
+    messages: (user, args, { models }) => {
+      return Object.values(models.users).filter(
         message => message.userId === user.id,
       )
     }
