@@ -15,10 +15,7 @@ const user = (sequelize, DataTypes) => {
       unique: true,
       allowNull: false,
       validate: {
-        notEmpty: {
-          args: true,
-          msg: 'Email cannot be empty',
-        },
+        notEmpty: true,
         isEmail: true,
       },
     },
@@ -57,7 +54,7 @@ const user = (sequelize, DataTypes) => {
     return user;
   };
 
-  User.beforeCreate(user => {
+  User.beforeCreate(async user => {
     user.password = await user.generatePasswordHash();
   });
 
@@ -95,7 +92,7 @@ const user = (sequelize, DataTypes) => {
     text. Fortunately, bcrypt will tell you whether the password is correct or not 
     when a user signs in.
     */
-  }
+  };
 
   return User;
 };
