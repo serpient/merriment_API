@@ -14,3 +14,17 @@ src/resolvers/message.js file. Import it with the combineResolvers() from the
 newly installed node package. The new resolver is used to protect the resolvers 
 by combining them.
 */
+
+export const isMessageOwner = async (
+  parent,
+  { id },
+  { models, me },
+) => {
+  const message = await models.Message.findById(id, { raw: true });
+
+  if (message.userId !== me.id) {
+    throw new ForbiddenError('Not authenticated as message owner');
+  }
+
+  return skip;
+}
