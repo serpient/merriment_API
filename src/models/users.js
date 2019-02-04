@@ -85,6 +85,18 @@ const user = (sequelize, DataTypes) => {
     */
   }
 
+  User.prototype.validatePassword = async function(password) {
+    return await bcrypt.compare(password, this.password);
+    /*
+    it’s a prototypical JavaScript inheritance for making a method available 
+    in the user instance. In this method, the user (this) and its password can 
+    be compared with the incoming password from the GraphQL mutation using bcrypt, 
+    because the password on the user is hashed, and the incoming password is plain 
+    text. Fortunately, bcrypt will tell you whether the password is correct or not 
+    when a user signs in.
+    */
+  }
+
   return User;
 };
 

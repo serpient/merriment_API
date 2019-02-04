@@ -13,6 +13,11 @@ export default gql`
       email: String!,
       password: String!,
     ): Token!
+
+    signIn(
+      login: String!,
+      password: String!
+    ): Token!
   }
 
   type Token {
