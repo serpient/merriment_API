@@ -1,7 +1,7 @@
 ## Getting Started
 ```
-git clone https://github.com/serpient/merriment_API.git
-cd merriment_API
+git clone https://github.com/serpient/practice_GraphQL_API.git
+cd practice_GraphQL_API
 npm start
 ```
 
