@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
-    "test-server": "TEST_DATABASE=mytestdatabase npm start",
-    "test": "mocha --require @babel/register \"./src/**/*.spec.js*\""
+    "test-server": "cross-env TEST_DATABASE=mytestdatabase npm start",
+    "test": "npm run test-server mocha --require @babel/register \"**/*.spec.js*\""
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,7 @@
     "@babel/register": "^7.0.0",
     "axios": "^0.18.0",
     "chai": "^4.2.0",
+    "cross-env": "^5.2.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.9"
   }
