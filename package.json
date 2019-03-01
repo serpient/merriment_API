@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
     "test-server": "cross-env TEST_DATABASE=mytestdatabase npm start",
-    "test": "npm run test-server mocha --require @babel/register \"**/*.spec.js*\""
+    "test": "mocha --require @babel/register \"**/*.spec.js*\""
   },
   "repository": {
     "type": "git",
