@@ -17,7 +17,7 @@ export const user = async variables =>
   });
 
 export const signIn = async variables => {
-  await axios.post(API_URL, {
+  return await axios.post(API_URL, {
     query: `
     mutation ($login: String!, $password: String!) {
       signIn(login: $login, password: $password) {
@@ -29,7 +29,7 @@ export const signIn = async variables => {
 };
 
 export const deleteUser = async (variables, token) => {
-  axios.post(
+  return axios.post(
     API_URL,
     {
       query: `
